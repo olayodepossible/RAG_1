@@ -22,3 +22,10 @@ def load_documents(directory):
     loader = DirectoryLoader(directory, glob="**/*.txt",  loader_cls=TextLoader, loader_kwargs={'encoding': 'utf-8'})
     documents = loader.load()
     return documents
+
+
+def split_documents(documents, chunk_size=1000, chunk_overlap=0):
+    """Split documents into chunks with overlap."""
+    print("Splitting documents into chunks...")
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    return text_splitter.split_documents(documents)
